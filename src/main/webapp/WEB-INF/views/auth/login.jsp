@@ -62,17 +62,24 @@
 <body>
 <form action="${pageContext.request.contextPath}/login" method="post">
     <div>
-        <label for="username">Username:</label>
-        <input type="text" id="username" name="username" required />
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
     </div>
     <div>
         <label for="password">Password:</label>
-        <input type="password" id="password" name="password" required />
+        <input type="password" id="password" name="password" required>
     </div>
     <div>
-        <button type="submit">Login</button>
+        <input type="submit" value="Login">
+    </div>
+    <div style="color:red;">
+        <span th:if="${fields.hasErrors('email')}" th:errors="*{email}"></span>
     </div>
 </form>
+
+<c:if test="${not empty error}">
+    <div style="color:red;">${error}</div>
+</c:if>
 
 </body>
 </html>

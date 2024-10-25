@@ -46,5 +46,9 @@ public class UserService implements UserServiecInterface, UserDetailsService {
                 Collections.emptyList()
         );
     }
+    @Override
+    public boolean checkLogin(String email, String password) {
+        System.out.println("Service: Checking login");
+        return userDao.checkLogin(email, password);
+    }
 }
-
