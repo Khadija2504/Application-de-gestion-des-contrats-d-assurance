@@ -11,21 +11,75 @@
 <html>
 <head>
     <title>Title</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        h2 {
+            color: #333;
+        }
+        form {
+            background: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            margin: auto;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            background-color: #5cb85c;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+        }
+        button:hover {
+            background-color: #4cae4c;
+        }
+        .error {
+            color: red;
+            margin-top: 10px;
+        }
+    </style>
 </head>
 <body>
-<form action="${pageContext.request.contextPath}/login" method="get">
+<form action="${pageContext.request.contextPath}/login" method="post">
     <div>
-        <label for="username">Username:</label>
-        <input type="text" id="username" name="username" required />
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
     </div>
     <div>
         <label for="password">Password:</label>
-        <input type="password" id="password" name="password" required />
+        <input type="password" id="password" name="password" required>
     </div>
     <div>
-        <button type="submit">Login</button>
+        <input type="submit" value="Login">
+    </div>
+    <div style="color:red;">
+        <span th:if="${fields.hasErrors('email')}" th:errors="*{email}"></span>
     </div>
 </form>
+
+<c:if test="${not empty error}">
+    <div style="color:red;">${error}</div>
+</c:if>
 
 </body>
 </html>
